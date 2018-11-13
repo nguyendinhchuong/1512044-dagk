@@ -1,5 +1,4 @@
-import firebase from 'firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
 
 // Initialize Firebase
 var config = {
@@ -10,12 +9,8 @@ var config = {
     storageBucket: "dagk-114c0.appspot.com",
     messagingSenderId: "95709885274"
 };
-export default firebase.initializeApp(config);
 
-
-
-
-var provider = new firebase.auth.GoogleAuthProvider();
+export { config as default };
 
 //firebase.auth().signInWithRedirect(provider);
 
