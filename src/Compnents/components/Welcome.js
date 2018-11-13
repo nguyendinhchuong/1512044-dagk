@@ -20,7 +20,7 @@ class Home extends Component{
  
     render(){
         return(
-            <div className="container clearfix">
+            <div className="cus-container cus-clearfix">
                 <PeopleList getFriend={this.getFriend}/>
                 {
                     this.state.user
