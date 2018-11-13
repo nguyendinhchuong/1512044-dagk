@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
-// import GoogleButton from 'react-google-button' // optional
+import GoogleButton from 'react-google-button' 
 import Welcome from './Welcome'
+import './style.css'
 
 export const LoginPage = ({ firebase, auth }) => (
   <div>
@@ -13,12 +14,12 @@ export const LoginPage = ({ firebase, auth }) => (
       {
         isEmpty(auth)
           ? <div>
-            <button // <GoogleButton/> button can be used instead
+            <GoogleButton className="btn-custom"
               onClick={() => firebase.login({ provider: 'google', type: 'popup' })}
-            >Login With Google</button>
+            >Login With Google</GoogleButton>
           </div>
           : <div>
-            <button // <GoogleButton/> button can be used instead
+            <button className="btn btn-primary btn-custom"
               onClick={() => firebase.logout()}
             >Logout</button>
             <Welcome />

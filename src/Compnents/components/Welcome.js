@@ -25,7 +25,7 @@ class Home extends Component{
                 {
                     this.state.user
                     ?<ChatRoom user={this.state.user} keyRoom={this.state.key}/>
-                    :<div>None</div>
+                    :<div className="stand-by"><span className="center-text">Welcome to Firebase Chat app</span></div>
                 }
                 
             </div>

@@ -200,3 +200,24 @@ img.fix{
 li{
     list-style: none;
 }
+
+.btn-custom{
+  cursor: pointer;
+  position: relative;
+  left: 45%;
+  margin-bottom: 5px;
+}
+
+.stand-by{
+  background: #f2f5f8;
+  width: 490px;
+  float: left;
+  height: 874px;
+  color: #444753;
+  font-size: 2em;
+  text-align: center;
+}
+.center-text{
+  text-align: center;
+  line-height: 15;
+}

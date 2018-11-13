@@ -9,7 +9,7 @@ class ChatBox extends Component {
         super(props);
         this.state = {
             message: '',
-            url:''
+            url: ''
         }
     }
     handleChange = (e) => {
@@ -17,12 +17,12 @@ class ChatBox extends Component {
             message: e.target.value
         })
     }
-    handleChangeLink = (e) =>{
+    handleChangeLink = (e) => {
         this.setState({
             url: e.target.value
         })
     }
-    handleSubmit = ()=>{
+    handleSubmit = () => {
         let date = new Date()
         let dateTime = date.getTime()
         dateTime = dateTime.toString()
@@ -74,8 +74,8 @@ class ChatBox extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <input type="text" onChange={this.handleChangeLink}/>
-            </div>
+                                <input type="text" onChange={this.handleChangeLink} />
+                            </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" >Close</button>
                                 <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleSubmit}>Save changes</button>

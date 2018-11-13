@@ -23,29 +23,29 @@ class ChatRoom extends Component {
         console.log(messages)
         return (
             <div className="chat">
-                <div class="chat-header clearfix">
+                <div className="chat-header clearfix">
                     <img className="fix" src={this.props.user.avatarUrl} alt="avatar" />
 
-                    <div class="chat-about">
-                        <div class="chat-with">{'Chat with ' + this.props.user.displayName}</div>
-                        <div class="chat-num-messages">already 1 902 messages</div>
+                    <div className="chat-about">
+                        <div className="chat-with">{'Chat with ' + this.props.user.displayName}</div>
+                        <div className="chat-num-messages">already 1 902 messages</div>
                     </div>
-                    <i class="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
                 </div>
-                <div class="chat-history">
+                <div className="chat-history">
                     <ul>
                         {
                             messages.map((message) => {
                                 return (
                                     this.props.uid !== message.userID
                                         ?
-                                        < li class="clearfix" >
-                                            <div class="message-data align-right">
-                                                <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
-                            <span class="message-data-name">{this.displayName}</span> <i class="fa fa-circle me"></i>
+                                        < li className="clearfix" >
+                                            <div className="message-data align-right">
+                                                <span className="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
+                            <span class="message-data-name">{this.displayName}</span> <i className="fa fa-circle me"></i>
 
                                             </div>
-                                            <div class="message other-message float-right">
+                                            <div className="message other-message float-right">
                                                 {message.type === 'text'
                                                     ? message.message
                                                     : <img src={message.message} alt="" />
@@ -53,11 +53,11 @@ class ChatRoom extends Component {
                                             </div>
                                         </li>
                                         : <li>
-                                            <div class="message-data">
-                                                <span class="message-data-name"><i class="fa fa-circle online"></i>{this.props.user.displayName}</span>
-                                                <span class="message-data-time">10:12 AM, Today</span>
+                                            <div className="message-data">
+                                                <span className="message-data-name"><i className="fa fa-circle online"></i>{this.props.user.displayName}</span>
+                                                <span className="message-data-time">10:12 AM, Today</span>
                                             </div>
-                                            <div class="message my-message">
+                                            <div className="message my-message">
                                                 {message.type === 'text'
                                                     ? message.message
                                                     : <img src={message.message} alt="" />
