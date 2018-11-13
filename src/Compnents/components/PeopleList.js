@@ -10,25 +10,32 @@ class PeopleList extends Component {
     constructor() {
         super();
         this.state = {
-            searchResult:''
+            searchResult: ''
         }
+    }
+    getFriend = (userID, user) => {
+        let user1 = this.props.uid.slice(0, 6)
+        let user2 = userID.slice(0, 6)
+
+        let key = parseInt(user1, 10) + parseInt(user2, 10)
+        return this.props.getFriend(key,user);
     }
     getSearch = (search) => {
         this.setState({
-            searchResult:search
+            searchResult: search
         })
     }
     render() {
-        let users = this.props.users.filter((user)=>{
-            return user.displayName.indexOf(this.state.searchResult)!==-1;
+        let users = this.props.users.filter((user) => {
+            return user.displayName.indexOf(this.state.searchResult) !== -1;
         })
         return (
             <div className="people-list">
-                <Search getSearch={this.getSearch}/>
+                <Search getSearch={this.getSearch} />
                 <ul className="list">
                     {users.map((user) => {
                         return (
-                            <li className="clearfix">
+                            <li className="clearfix" onClick={() => this.getFriend(user.providerData[0].uid, user)}>
                                 <img className="fix" src={user.avatarUrl} alt="avatar" />
                                 <div class="about">
                                     <div className="name">{user.displayName}</div>
@@ -54,7 +61,7 @@ class PeopleList extends Component {
 // )(PeopleList)
 const mapStateToProps = state => {
     return {
-        uid: state.firebase.auth.uid,
+        uid: state.firebase.auth.providerData[0].uid,
         email: state.firebase.auth.email,
         users: state.firestore.ordered.users ? state.firestore.ordered.users.map(c => c) : [],
     }

@@ -44,7 +44,7 @@ body {
 .people-list img {
   float: left;
 }
-.people-list img.fix{
+img.fix{
   width: 30px;
   height: 30px;
 }

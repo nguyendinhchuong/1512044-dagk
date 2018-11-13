@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import './style.css'
 import ChatBox from './ChatBox';
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { firebaseConnect, firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class ChatRoom extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+    getAllMessage = () => {
+
+    }
+
     render() {
+        console.log(this.props.messages)
         return (
             <div className="chat">
                 <div class="chat-header clearfix">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+                    <img className="fix" src={this.props.user.avatarUrl} alt="avatar" />
 
                     <div class="chat-about">
-                        <div class="chat-with">Chat with Vincent Porter</div>
+                        <div class="chat-with">{'Chat with ' + this.props.user.displayName}</div>
                         <div class="chat-num-messages">already 1 902 messages</div>
                     </div>
                     <i class="fa fa-star"></i>
@@ -69,10 +83,29 @@ class ChatRoom extends Component {
 
                     </ul>
                 </div>
-                <ChatBox />
+                <ChatBox userID={this.props.user.providerData[0].uid} keyRoom={this.props.keyRoom} />
             </div >
         )
     }
 }
 
-export default ChatRoom;
+const mapStateToProps = state => {
+    return {
+        uid: state.firebase.auth.providerData[0].uid,
+        email: state.firebase.auth.email,
+        messages: state.firestore.ordered.messages ? state.firestore.ordered.messages.map(c => c) : [],
+    }
+}
+const mapDispatchToProps = {}
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect((props) => {
+        if (!props.uid) return []
+        return [
+            {
+                collection: 'messages',
+                queryParams: ['orderByKey']
+            }
+        ]
+    })
+)(ChatRoom)
