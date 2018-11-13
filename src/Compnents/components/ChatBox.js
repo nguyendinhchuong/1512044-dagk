@@ -36,19 +36,26 @@ class ChatBox extends Component {
                 dateTime: dateTime
             })
     }
-    saveMessage = () => {
-        let date = new Date()
-        let dateTime = date.getTime()
-        dateTime = dateTime.toString()
-        this.props.firestore.add(
-            { collection: 'messages' },
-            {
-                message: this.state.message,
-                keyRoom: this.props.keyRoom,
-                userID: this.props.userID,
-                type: 'text',
-                dateTime: dateTime
+    saveMessage = (e) => {
+        if(this.state.message){
+            let date = new Date()
+            let dateTime = date.getTime()
+            dateTime = dateTime.toString()
+            this.props.firestore.add(
+                { collection: 'messages' },
+                {
+                    message: this.state.message,
+                    keyRoom: this.props.keyRoom,
+                    userID: this.props.userID,
+                    type: 'text',
+                    dateTime: dateTime
+                });
+            this.setState({
+                message:''
             })
+            this.refs.chatbox.value = "";
+        }
+        return
     }
     render() {
         return (
@@ -59,6 +66,7 @@ class ChatBox extends Component {
                     placeholder="Type your message"
                     rows="3"
                     onChange={this.handleChange}
+                    ref="chatbox"
                 ></textarea>
 
                 <i class="fa fa-file-o"></i>
@@ -68,13 +76,13 @@ class ChatBox extends Component {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Send image link</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <input type="text" onChange={this.handleChangeLink} />
+                                <input className="form-control" type="text" onChange={this.handleChangeLink} />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" >Close</button>

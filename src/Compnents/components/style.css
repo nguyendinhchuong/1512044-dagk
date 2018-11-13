@@ -221,3 +221,10 @@ li{
   text-align: center;
   line-height: 15;
 }
+.img-custom{
+  width: 50%;
+  height: 50%;
+}
+.img-custom .right{
+  float: right;
+}

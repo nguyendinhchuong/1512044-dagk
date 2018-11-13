@@ -28,7 +28,7 @@ class ChatRoom extends Component {
 
                     <div className="chat-about">
                         <div className="chat-with">{'Chat with ' + this.props.user.displayName}</div>
-                        <div className="chat-num-messages">already 1 902 messages</div>
+                        <div className="chat-num-messages">{"already " +  messages.length + "  messages"}</div>
                     </div>
                     <i className="fa fa-star"></i>
                 </div>
@@ -48,7 +48,7 @@ class ChatRoom extends Component {
                                             <div className="message other-message float-right">
                                                 {message.type === 'text'
                                                     ? message.message
-                                                    : <img src={message.message} alt="" />
+                                                    : <img className="img-custom" src={message.message} alt="" />
                                                 }
                                             </div>
                                         </li>
@@ -60,7 +60,7 @@ class ChatRoom extends Component {
                                             <div className="message my-message">
                                                 {message.type === 'text'
                                                     ? message.message
-                                                    : <img src={message.message} alt="" />
+                                                    : <img className="img-custom" src={message.message} alt="" />
                                                 }
                                             </div>
                                         </li>
